@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="description"
+      content="Experimente o melhor da formatação de texto em um só lugar."
+    />
+
+    <meta name="keywords" content="Formatação de Texto" />
+
+    <meta name="author" content="Gabriel Trajano" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formatação de Texto</title>
+
+    <link rel="shortcut icon" href="SRC/favicon.png" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="container max-w-2xl mx-auto bg-white shadow-md rounded-lg p-8">
+      <h1 class="text-3xl font-bold text-blue-600 text-center mb-6">
+        Formatação de Texto
+      </h1>
+      <div class="mb-6">
+        <label
+          for="texto-entrada"
+          class="block text-gray-700 text-sm font-bold mb-2"
+          >Digite seu texto:</label
+        >
+        <textarea
+          id="texto-entrada"
+          placeholder="Digite o texto que você deseja formatar aqui..."
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        ></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+        <button
+          id="converter-maiusculas"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Converter para MAIÚSCULAS
+        </button>
+        <button
+          id="converter-minusculas"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Converter para minúsculas
+        </button>
+        <button
+          id="capitalizar-palavras"
+          class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Capitalizar Palavras
+        </button>
+        <button
+          id="remover-espacos"
+          class="bg-yellow-500 hover:bg-yellow-700 text-gray-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Remover Espaços
+        </button>
+        <button
+          id="remover-espacos-extras"
+          class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Remover Espaços Extras
+        </button>
+        <button
+          id="inverter-texto"
+          class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Inverter Texto
+        </button>
+        <button
+          id="converter-camel-case"
+          class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Camel Case
+        </button>
+        <button
+          id="converter-pascal-case"
+          class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Pascal Case
+        </button>
+        <button
+          id="converter-kebab-case"
+          class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Kebab Case
+        </button>
+        <button
+          id="converter-snake-case"
+          class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Snake Case
+        </button>
+      </div>
+
+      <div class="mb-6">
+        <label
+          for="texto-resultado"
+          class="block text-gray-700 text-sm font-bold mb-2"
+          >Resultado:</label
+        >
+        <textarea
+          id="texto-resultado"
+          readonly
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        ></textarea>
+      </div>
+    </div>
+
+    <script>
+      const textoEntrada = document.getElementById("texto-entrada");
+      const textoResultado = document.getElementById("texto-resultado");
+
+      document
+        .getElementById("converter-maiusculas")
+        .addEventListener("click", () => {
+          textoResultado.value = textoEntrada.value.toUpperCase();
+        });
+
+      document
+        .getElementById("converter-minusculas")
+        .addEventListener("click", () => {
+          textoResultado.value = textoEntrada.value.toLowerCase();
+        });
+
+      document
+        .getElementById("capitalizar-palavras")
+        .addEventListener("click", () => {
+          const texto = textoEntrada.value;
+          const palavras = texto.split(" ");
+          const palavrasCapitalizadas = palavras.map((palavra) => {
+            return (
+              palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase()
+            );
+          });
+          textoResultado.value = palavrasCapitalizadas.join(" ");
+        });
+
+      document
+        .getElementById("remover-espacos")
+        .addEventListener("click", () => {
+          textoResultado.value = textoEntrada.value.replace(/\s/g, "");
+        });
+
+      document
+        .getElementById("remover-espacos-extras")
+        .addEventListener("click", () => {
+          textoResultado.value = textoEntrada.value.trim().replace(/\s+/g, " ");
+        });
+
+      document
+        .getElementById("inverter-texto")
+        .addEventListener("click", () => {
+          textoResultado.value = textoEntrada.value
+            .split("")
+            .reverse()
+            .join("");
+        });
+
+      document
+        .getElementById("converter-camel-case")
+        .addEventListener("click", () => {
+          const texto = textoEntrada.value.trim().replace(/[-_\s]+/g, " ");
+          const palavras = texto.split(" ");
+          let resultado = palavras[0].toLowerCase();
+          for (let i = 1; i < palavras.length; i++) {
+            resultado +=
+              palavras[i].charAt(0).toUpperCase() +
+              palavras[i].slice(1).toLowerCase();
+          }
+          textoResultado.value = resultado;
+        });
+
+      document
+        .getElementById("converter-pascal-case")
+        .addEventListener("click", () => {
+          const texto = textoEntrada.value.trim().replace(/[-_\s]+/g, " ");
+          const palavras = texto.split(" ");
+          let resultado = "";
+          for (let i = 0; i < palavras.length; i++) {
+            resultado +=
+              palavras[i].charAt(0).toUpperCase() +
+              palavras[i].slice(1).toLowerCase();
+          }
+          textoResultado.value = resultado;
+        });
+
+      document
+        .getElementById("converter-kebab-case")
+        .addEventListener("click", () => {
+          const texto = textoEntrada.value
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "-");
+          textoResultado.value = texto.replace(/[-_]+/g, "-");
+        });
+
+      document
+        .getElementById("converter-snake-case")
+        .addEventListener("click", () => {
+          const texto = textoEntrada.value
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "_");
+          textoResultado.value = texto.replace(/[-_]+/g, "_");
+        });
+    </script>
+  </body>
+</html>
